@@ -15,7 +15,8 @@ import jakarta.persistence.Table;
 @Table(name = "pedidos")
 public class Pedido {
 	
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nomeProduto;
 	private BigDecimal valorNegociado;
@@ -29,14 +30,13 @@ public class Pedido {
 	}
 	
 	public Pedido(String nomeProduto, BigDecimal valorNegociado, LocalDate dataEntrega, String urlProduto,
-			String urlImagem, String descricaoPedido) {
-		super();
+			String urlImagem, String descricaoProduto) {
 		this.nomeProduto = nomeProduto;
 		this.valorNegociado = valorNegociado;
 		this.dataEntrega = dataEntrega;
 		this.urlProduto = urlProduto;
 		this.urlImagem = urlImagem;
-		this.descricaoProduto = descricaoPedido;
+		this.descricaoProduto = descricaoProduto;
 	}
 
 	
@@ -80,12 +80,15 @@ public class Pedido {
 		this.urlImagem = urlImagem;
 	}
 
-	public String getDescricaoPedido() {
+	public String getDescricaoProduto() {
 		return descricaoProduto;
 	}
 
-	public void setDescricaoProduto(String descricaoPedido) {
-		this.descricaoProduto = descricaoPedido;
+	public void setDescricaoProduto(String descricaoProduto) {
+		this.descricaoProduto = descricaoProduto;
 	}
+
+
+	
 	
 }

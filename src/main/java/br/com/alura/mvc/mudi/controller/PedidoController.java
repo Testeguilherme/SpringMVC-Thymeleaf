@@ -1,28 +1,25 @@
 package br.com.alura.mvc.mudi.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import br.com.alura.mvc.mudi.model.Pedido;
 import br.com.alura.mvc.mudi.repository.PedidoRepository;
 
 @Controller
-public class HomeController {
-	
+@RequestMapping("/pedido")
+public class PedidoController {
+
 	@Autowired
-	private PedidoRepository pedidoRepository;
+	private PedidoRepository pedidoRepository;  
 	
-	
-	@GetMapping("/")
-	public String home(Model model) {
-		List<Pedido> listaPedidos = pedidoRepository.findAll();
-		model.addAttribute("listaPedidos", listaPedidos);
-		return "home";
+	@GetMapping("/formulario")
+	public String formularioPedido(Model model) {
+		return "pedido/formulario";
 	}
 	
-
+	
+	
 }
