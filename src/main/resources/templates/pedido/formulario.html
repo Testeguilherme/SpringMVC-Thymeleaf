@@ -4,37 +4,81 @@
 <meta charset="ISO-8859-1">
 <title>Formulario</title>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+	crossorigin="anonymous">
+</script>
+	
+	<style>
+	.logo-container{
+		background-color: #47bcff;		
+		color:white;	
+	}
+	.mudi{
+	font-size: 40px;
+	font-family: 'Handlee', cursive;
+	}
+	</style>
+	
 </head>
 
 <body>
 
-<div class="container">
-			<div class="jumbotron bg-secondary mb-0">
-					<h1 class="display-3">Novo Pedido</h1>
-			</div>
-			
-		<form action="">
-			<div class="card">
-				<div class="card-body">
-					<div class="row">
-						<div class="col-12 col-sm-7 mb-3">
-						
-							<div><label for="nomeProduto">Produto</label> <input class="form-control" placeholder="nome do produto" name="nomeProduto"/> <small>Informe o nome do produto</small> </div>
-							<div><label for="urlProduto">Url Produto</label> <input class="form-control" placeholder="url do produto" name="urlProduto"/> <small>Cole a url do produto nesse campo</small> </div>
-							<div><label for="urlImagem">Url Imagem</label> <input class="form-control" placeholder="url da produto" name="urlImagem"/> <small>Copie a url da imagem</small> </div>
-							<div>Descricao</div><div> <textarea class="form-control"></textarea> </div>
-							<p></p>
-							<input class="btn btn-primary" type="submit" value="Submit">
+
+	<div class="logo-container mb-3 p-3 d-flex justify-content-between">
+		<span class="mudi">mudi</span> <span class="login mt-3">login</span>
+	</div>
+
+
+
+	<div class="container mb-3">
+		<div class="jumbotron bg-secondary mb-0">
+			<h1 class="display-3">Novo Pedido</h1>
+		</div>
+		<div class="card mb-3">
+			<div class="card-body mb-3">
+				<div class="col-12 col-sm-7 mb-3">
+					<form th:object="${requisicaoNovoPedido}" action="/pedido/novo" method="POST">
+						<div class="mb-3">
+							<label for="nomeProduto" class="form-label">Produto</label> <input
+								th:field="*{nomeProduto}" class="form-control is-invalid" placeholder="nome do produto"/> 
+								<div class="invalid-feedback" th:errors="*{nomeProduto}">
+									Preenchimento obrigatório
+								</div>
 						</div>
-					</div>
+						<div class="mb-3">
+							<label for="urlProduto" class="form-label">Url Produto</label> <input
+								th:field="*{urlProduto}" class="form-control is-invalid" placeholder="url do produto"/>
+								 <div class="invalid-feedback" th:errors="*{urlProduto}">
+									Preenchimento obrigatório
+								</div>
+						</div>
+						<div class="mb-3">
+							<label for="urlImagem" class="form-label">Url Imagem</label> <input
+								th:field="*{urlImagem}" class="form-control is-invalid" placeholder="url da produto"/> 
+								<div class="invalid-feedback" th:errors="*{urlImagem}">
+									Preenchimento obrigatório
+								</div>
+						</div>
+						<div class="mb-3">
+							<label for="descricao" class="form-label">Descricao</label>
+							<textarea th:field="*{descricao}" class="form-control" placeholder="descricao"></textarea>
+							
+						</div>
+						<button class="btn btn-primary" type="submit">Cadastrar</button> 
+					</form>
 				</div>
-			</div>	
-		</form>
-			
-</div>
-	
+			</div>
+		</div>
+
+
+	</div>
+
 </body>
 </html>

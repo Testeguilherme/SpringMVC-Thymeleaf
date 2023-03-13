@@ -3,9 +3,10 @@ package br.com.alura.mvc.mudi.model;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -18,28 +19,39 @@ public class Pedido {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
 	private String nomeProduto;
+	
 	private BigDecimal valorNegociado;
+	
 	private LocalDate dataEntrega;
+
 	private String urlProduto;
+
 	private String urlImagem;
+	
 	private String descricaoProduto;
+	
+	@Enumerated(EnumType.STRING)
+	private StatusPedido status;
+	
 	
 	public Pedido() {
 		
 	}
 	
 	public Pedido(String nomeProduto, BigDecimal valorNegociado, LocalDate dataEntrega, String urlProduto,
-			String urlImagem, String descricaoProduto) {
+			String urlImagem, String descricaoProduto, StatusPedido status) {
+		super();
 		this.nomeProduto = nomeProduto;
 		this.valorNegociado = valorNegociado;
 		this.dataEntrega = dataEntrega;
 		this.urlProduto = urlProduto;
 		this.urlImagem = urlImagem;
 		this.descricaoProduto = descricaoProduto;
+		this.status = status;
 	}
 
-	
 	public String getNomeProduto() {
 		return nomeProduto;
 	}
@@ -86,6 +98,14 @@ public class Pedido {
 
 	public void setDescricaoProduto(String descricaoProduto) {
 		this.descricaoProduto = descricaoProduto;
+	}
+
+	public StatusPedido getStatus() {
+		return status;
+	}
+
+	public void setStatus(StatusPedido status) {
+		this.status = status;
 	}
 
 
